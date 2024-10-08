@@ -1,14 +1,14 @@
-# Use an official base image (for example, OpenJDK if you're building a Spring Boot application)
-FROM openjdk:17-jdk-alpine
+# Use an official base image (for example, Tomcat or any other application server)
+FROM tomcat:9.0-alpine
 
-# Set the working directory
+# Set the working directory inside the container
 WORKDIR /subeejkisan
 
-# Copy the jar file (assuming your build process generates a `subeejkisan.jar`)
-COPY target/subeejkisan.jar /gsaikumarempover/subeejkisan.jar
+# Copy the WAR file into the Tomcat webapps directory
+COPY target/subeejkisan.war ./subeejkisan.war
 
-# Expose the application port (e.g., 8080 for Spring Boot)
+# Expose the Tomcat port
 EXPOSE 8080
 
-# Run the jar file when the container starts
-ENTRYPOINT ["java", "-jar", "/app/subeejkisan.jar"]
+# Start the Tomcat server
+CMD ["catalina.sh", "run"]
