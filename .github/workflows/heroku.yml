@@ -36,10 +36,8 @@ jobs:
         id: heroku
         uses: gonuit/heroku-docker-deploy@v1.3.3
         with:
+          heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
           email: ${{ secrets.HEROKU_EMAIL }}
-          api_key: ${{ secrets.HEROKU_API_KEY }}
-          app_name: ${{ secrets.HEROKU_APP_NAME }}
-          dockerfile_directory: ./
-          dockerfile_name: Dockerfile
-          docker_options: "--no-cache"
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          dockerfile_directory: '.'  # Directory where Dockerfile is located
           process_type: 'web'
